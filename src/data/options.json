@@ -1,0 +1,81 @@
+{
+    "races": {
+        "Human": {
+            "description": "Humans are known for their adaptability and endurance, able to survive no matter the environment.",
+            "bonuses": [
+                "Cunning",
+                "Endurance"
+            ]
+        },
+        "Elf": {
+            "description": "Elves are known for their quick thinking and intellect, making them natural scholars and explorers.",
+            "bonuses": [
+                "Dexterity",
+                "Intelligence"
+            ]
+        },
+        "Tiefling": {
+            "description": "Tieflings are known for their natural attractiveness, which blends well with their perceptive nature as they navigate away from their Canrean homeland.",
+            "bonuses": [
+                "Charm",
+                "Perception"
+            ]
+        }
+    },
+    "genders": [
+        {
+            "id": 1,
+            "name": "Male"
+        },
+        {
+            "id": 2,
+            "name": "Female"
+        },
+        {
+            "id": 3,
+            "name": "Non-binary"
+        }
+    ],
+    "background": {
+        "Acolyte": {
+            "description": "Acolytes have spent their lives in service to a specific god, or pantheon of gods, and can range from clerics to priests.",
+            "bonuses": [
+                "Charm",
+                "Luck"
+            ]
+        },
+        "Merchant": {
+            "description": "Merchants make a living through selling their goods and predicting where they should travel to get the highest profits.",
+            "bonuses": [
+                "Intelligence",
+                "Cunning"
+            ]
+        }
+    },
+    "abilities": {
+        "Strength": "Determines physical prowess, affecting combat effectiveness and threats.",
+        "Charm": "Influences negotiation and diplomacy, and most importantly prices.",
+        "Cunning": "Influences cleverness in social situations, mostly being used to exploit and profit.",
+        "Intelligence": "Governs problem-solving abilities, especially your skill at analyzing markets.",
+        "Dexterity": "Affects agility and precision, impacting the navigation skill and finesse.",
+        "Endurance": "Governs how far you can travel before needing to rest.",
+        "Perception": "Enhances awareness and observation skills, allowing you to spot traps, dangers or tricks.",
+        "Luck": "Represents fortune or fate, governing the natural providence you receive."
+    },
+    "languages": [
+        "Elvish",
+        "Dwarvish",
+        "Tiefling"
+    ],
+    "alignment": [
+        "Neutral",
+        "Chaotic Neutral",
+        "Lawful Neutral",
+        "Neutral Good",
+        "Neutral Evil",
+        "Chaotic Good",
+        "Chaotic Evil",
+        "Lawful Good",
+        "Lawful Evil"
+    ]
+}

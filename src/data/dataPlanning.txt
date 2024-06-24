@@ -1,0 +1,26 @@
+abilities:
+* Strength: 
+    Determines physical prowess, affecting combat effectiveness in encounters and the ability to carry more goods, as well as avoiding conflicts 
+    through threatening
+
+* Charisma:
+    Influences social interactions and trading success, affecting negotiation outcomes, prices when buying/selling goods, and possibly gaining 
+    allies or avoiding conflicts through diplomacy
+
+*Intelligence: 
+    Governs problem-solving abilities, affecting the player's ability to analyze market trends (therefore, be able to predict what certain cities 
+    sell and their average prices), and make strategic decisions in encounters
+
+*Dexterity: 
+    Affects agility and precision, impacting the player's ability to evade dangers in encounters, navigate through tricky terrain, or perform actions 
+    requiring finesse
+
+*Endurance: 
+    Governs how far the player can travel before needing to rest
+
+*Perception: 
+    Enhances awareness and observation skills, influencing the player's ability to detect hidden opportunities, avoid traps or ambushes in encounters, 
+    allowing them to avoid encounter spots that are negative
+
+*Luck: 
+    Represents fortune or fate, influencing random events, critical hits in combat, or unexpected windfalls in trading

@@ -1,0 +1,42 @@
+/* styles.css */
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
+/* Define color variables */
+:root {
+    --background-color: #11021f;
+
+    --text-color: #eed2fb;
+}
+
+/* Dark Mode */
+body {
+    font-family: "Crimson Text", serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Other styles for elements like headings, paragraphs, etc. */
+h1, h2, h3, h4, label, p {
+    color: var(--text-color);
+}
+
+/* Links */
+a {
+    color: var(--text-color);
+}
+
+/* Example button */
+.button {
+    background-color: var(--text-color);
+    /* Using the link color as button background */
+    color: var(--text-color);
+    /* Using text color for button text */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
