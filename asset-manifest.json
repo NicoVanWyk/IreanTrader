@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/IreanTrader/static/css/main.33755f31.css",
-    "main.js": "/IreanTrader/static/js/main.956076aa.js",
+    "main.css": "/IreanTrader/static/css/main.cd1a124a.css",
+    "main.js": "/IreanTrader/static/js/main.960864b8.js",
     "static/js/453.44a72bee.chunk.js": "/IreanTrader/static/js/453.44a72bee.chunk.js",
     "index.html": "/IreanTrader/index.html",
-    "main.33755f31.css.map": "/IreanTrader/static/css/main.33755f31.css.map",
-    "main.956076aa.js.map": "/IreanTrader/static/js/main.956076aa.js.map",
+    "main.cd1a124a.css.map": "/IreanTrader/static/css/main.cd1a124a.css.map",
+    "main.960864b8.js.map": "/IreanTrader/static/js/main.960864b8.js.map",
     "453.44a72bee.chunk.js.map": "/IreanTrader/static/js/453.44a72bee.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33755f31.css",
-    "static/js/main.956076aa.js"
+    "static/css/main.cd1a124a.css",
+    "static/js/main.960864b8.js"
   ]
 }
