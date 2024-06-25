@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import optionsData from '../data/options.json';
 import styles from './css/CharacterCreation.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const CharacterCreation: React.FC = () => {
+    const navigate = useNavigate();
     const { races, genders, background, abilities, languages, alignment } = optionsData;
 
     // State to store selected race, gender, background, and stats
@@ -138,7 +140,8 @@ const CharacterCreation: React.FC = () => {
                 name: selectedName,
                 language: selectedLanguage,
                 alignment: selectedAlignment,
-                stats: stats
+                stats: stats,
+                playerGold: 100
             };
 
             setPlayerData(data); // Save player data object
@@ -146,6 +149,14 @@ const CharacterCreation: React.FC = () => {
 
             // Save to localStorage
             localStorage.setItem('playerData', JSON.stringify(data));
+
+            // Dispatch custom event to notify changes in localStorage
+            const event = new Event('local-storage');
+            window.dispatchEvent(event);
+
+            setTimeout(() => {
+                navigate('/');
+            }, 1000);
         }
     };
 

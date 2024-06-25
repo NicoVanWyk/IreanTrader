@@ -1,0 +1,44 @@
+[
+    {
+        "id": "Torch",
+        "description": "A wooden torch.",
+        "type": "Adventuring Goods",
+        "lowest_price": 1,
+        "highest_price": 2
+    },
+    {
+        "id": "Sword",
+        "description": "A simple steel sword.",
+        "type": "Adventuring Goods",
+        "lowest_price": 10,
+        "highest_price": 20
+    },
+    {
+        "id": "Vegetables",
+        "description": "A crate of vegetables, freshly grown.",
+        "type": "Foodstuffs",
+        "lowest_price": 1,
+        "highest_price": 5
+    },
+    {
+        "id": "Ring Of Vanishing",
+        "description": "A ring that allows the user to turn invisible.",
+        "type": "Magical Goods",
+        "lowest_price": 1000,
+        "highest_price": 2000
+    },
+    {
+        "id": "Fruits",
+        "description": "A crate of fresh fruit.",
+        "type": "Foodstuffs",
+        "lowest_price": 1,
+        "highest_price": 5
+    },
+    {
+        "id": "Helmet",
+        "description": "A helmet made of steel.",
+        "type": "Adventuring Goods",
+        "lowest_price": 10,
+        "highest_price": 30
+    }
+]

@@ -17,7 +17,8 @@ const MapComponent: React.FC<MapProps> = ({ map, onTileClick, currentPosition, m
         if (tile === 'river') {
             return true; // River tiles are always out of range
         } else if (tile === 'mountain') {
-            return movePoints < 2; // Mountain tiles are out of range if less than 2 move points left
+            const distance = Math.max(Math.abs(currentPosition.x - x), Math.abs(currentPosition.y - y));
+            return distance * 2 > movePoints; // Mountain tiles are out of range if less than 2 move points left
         } else {
             const distance = Math.max(Math.abs(currentPosition.x - x), Math.abs(currentPosition.y - y));
             return distance > movePoints;
@@ -26,11 +27,12 @@ const MapComponent: React.FC<MapProps> = ({ map, onTileClick, currentPosition, m
 
     // Function to handle tile click
     const handleClick = (x: number, y: number) => {
-        if (!isOutOfRange(x, y)) {
-            const moveCost = map[y][x] === 'mountain' ? 2 : 1;
-            onTileClick(x, y, moveCost);
+        const distance = Math.max(Math.abs(currentPosition.x - x), Math.abs(currentPosition.y - y));
+        const totalMoveCost = map[y][x] === 'mountain' ? distance * 2 : distance; // Adjust move cost based on tile type
+        if (totalMoveCost <= movePoints && !isOutOfRange(x, y)) {
+            onTileClick(x, y, totalMoveCost);
         } else {
-            console.log(`Cannot move to (${x}, ${y}), out of range`);
+            console.log(`Cannot move to (${x}, ${y}), out of range or insufficient move points`);
         }
     };
 
