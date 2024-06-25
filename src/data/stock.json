@@ -40,5 +40,75 @@
         "type": "Adventuring Goods",
         "lowest_price": 10,
         "highest_price": 30
+    },
+    {
+        "id": "Rope",
+        "description": "Useful in a wade variety of circumstances.",
+        "type": "Adventuring Goods",
+        "lowest_price": 5,
+        "highest_price": 20
+    },
+    {
+        "id": "Bread",
+        "description": "The staple of almost any diet.",
+        "type": "Foodstuffs",
+        "lowest_price": 1,
+        "highest_price": 3
+    },
+    {
+        "id": "Pottery",
+        "description": "Beautiful, pragmatic and useful pots.",
+        "type": "Basic Goods",
+        "lowest_price": 5,
+        "highest_price": 15
+    },
+    {
+        "id": "Cloth",
+        "description": "Good quality cloth waiting to be turned into something else.",
+        "type": "Basic Goods",
+        "lowest_price": 30,
+        "highest_price": 60
+    },
+    {
+        "id": "Healing Potion",
+        "description": "Commonly used by adventurers in sticky situations.",
+        "type": "Adventuring Goods",
+        "lowest_price": 100,
+        "highest_price": 175
+    },
+    {
+        "id": "Backpack",
+        "description": "Easing the burden of hoarding loot.",
+        "type": "Adventuring Goods",
+        "lowest_price": 50,
+        "highest_price": 75
+    },
+    {
+        "id": "Dragon Scales",
+        "description": "A set of 12 dragon scales.",
+        "type": "Exotic Goods",
+        "lowest_price": 2000,
+        "highest_price": 3000
+    },
+    {
+        "id": "Ancient Relic",
+        "description": "A relic of unknown use...",
+        "type": "Exotic Goods",
+        "lowest_price": 3000,
+        "highest_price": 10000
+    },
+    {
+        "id": "Prayer Books",
+        "description": "Holy books containing prayers and spiritual knowledge.",
+        "type": "Spiritual Goods",
+        "lowest_price": 50,
+        "highest_price": 300
+    },
+    {
+        "id": "Holy Idol",
+        "description": "An idol dedicated to a deity, carefully crafted by one of the faithful.",
+        "type": "Spiritual Goods",
+        "lowest_price": 100,
+        "highest_price": 150
     }
 ]

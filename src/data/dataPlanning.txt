@@ -9,7 +9,7 @@ abilities:
 
 *Intelligence: 
     Governs problem-solving abilities, affecting the player's ability to analyze market trends (therefore, be able to predict what certain cities 
-    sell and their average prices), and make strategic decisions in encounters
+    sell and their average prices), and make strategic decisions in encounters. Also predict what a city have available (see 1-5 items in its current stock)
 
 *Dexterity: 
     Affects agility and precision, impacting the player's ability to evade dangers in encounters, navigate through tricky terrain, or perform actions 

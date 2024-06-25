@@ -46,9 +46,8 @@
 
     position: absolute;
 
-    background-color: #11021f;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    top: 10px;
+    right: 50px;
 
     border-bottom: 0px;
     border-bottom-left-radius: 0px;
@@ -62,4 +61,141 @@
 .TradeExit {
     width: 300px;
     font-size: 20px;
+}
+
+.Menu {
+    width: 300px;
+    height: auto;
+    position: absolute;
+
+    padding-top: 25px;
+    padding-bottom: 25px;
+
+    background-color: #11021f;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menuButton {
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+    font-size: 18px;
+
+    width: 150px;
+}
+
+.tabs {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 800px;
+}
+
+.tabList {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tabListItem {
+    padding: 10px 20px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    font-size: 20px;
+}
+
+.tabListItem:hover {
+    background-color: #696969;
+}
+
+.tabListItem:focus {
+    outline: none;
+}
+
+.tabPanel {
+    padding: 20px;
+    background-color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+
+    width: 600px;
+}
+
+.tabPanel p {
+    font-size: 20px;
+    text-align: center;
+}
+
+.tabPanel label {
+    margin-right: 15px;
+    font-size: 24px;
+}
+
+.tabPanel select {
+    width: 200px;
+
+    padding: 8px;
+
+    font-family: "Crimson Text", serif;
+    font-size: 20px;
+    color: #ffffff;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #191919;
+    margin-bottom: 10px;
+}
+
+.tabPanel input {
+    width: 200px;
+
+    padding: 8px;
+
+    font-family: "Crimson Text", serif;
+    font-size: 20px;
+    color: #ffffff;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #191919;
+    margin-bottom: 10px;
+}
+
+.tabPanel button {
+    width: 150px;
+
+    padding: 8px;
+
+    margin-top: 15px;
+
+    font-family: "Crimson Text", serif;
+    font-size: 20px;
+    color: #ffffff;
+
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #191919;
+    margin-bottom: 10px;
+}
+
+.tabPanel button:hover {
+    cursor: pointer;
+
+    color: #d6d6d6;
+    background-color: #11021f;
 }

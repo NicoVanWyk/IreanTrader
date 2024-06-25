@@ -17,6 +17,20 @@ const TradeInterface: React.FC<TradeInterfaceProps> = ({ stock, playerInventory,
     const [purchaseAmount, setPurchaseAmount] = useState<number>(1);
     const [sellAmount, setSellAmount] = useState<number>(1);
 
+    // Function to calculate discounted price based on Charm stat
+    const calculateDiscountedPrice = (item: StockItem) => {
+        const charm = 1; // Replace with actual Charm stat calculation
+        const discountPercentage = Math.max(1, Math.floor(charm * 2));
+        return Math.max(1, Math.floor(item.price * (1 - discountPercentage / 100)));
+    };
+
+    // Function to calculate marked-up price based on Cunning stat
+    const calculateMarkedUpPrice = (item: StockItem) => {
+        const cunning = 1; // Replace with actual Cunning stat calculation
+        const markupPercentage = Math.ceil(cunning * 2);
+        return Math.floor(item.price * (1 + markupPercentage / 100));
+    };
+
     const handlePurchase = () => {
         if (selectedStock && purchaseAmount > 0) {
             onPurchase(selectedStock, purchaseAmount);
@@ -48,11 +62,12 @@ const TradeInterface: React.FC<TradeInterfaceProps> = ({ stock, playerInventory,
                                     <div className={styles.stockDetails}>
                                         <h4>{item.id}</h4>
                                         <p>{item.description}</p>
-                                        <p>{item.price} gold</p>
+                                        <p>Price: {item.price} gold</p>
                                         <p>{item.amountAvailable} available</p>
                                     </div>
                                     {selectedStock === item && (
                                         <div className={styles.tradeControls}>
+                                            <p>Discounted Price (Charm): <br></br> {calculateDiscountedPrice(item)} gold</p>
                                             <input
                                                 type="number"
                                                 value={purchaseAmount}
@@ -66,6 +81,9 @@ const TradeInterface: React.FC<TradeInterfaceProps> = ({ stock, playerInventory,
                                 </div>
                             ))}
                         </div>
+                        <div className={styles.summary}>
+                            <h2>Your Gold: {playerGold} gold</h2>
+                        </div>
                     </div>
                 </TabPanel>
 
@@ -78,11 +96,12 @@ const TradeInterface: React.FC<TradeInterfaceProps> = ({ stock, playerInventory,
                                     <div className={styles.stockDetails}>
                                         <h4>{item.id}</h4>
                                         <p>{item.description}</p>
-                                        <p>{item.price} gold</p>
+                                        <p>Price: {item.price} gold</p>
                                         <p>{item.amountAvailable} in inventory</p>
                                     </div>
                                     {selectedInventoryItem === item && (
                                         <div className={styles.tradeControls}>
+                                            <p>Marked-Up Price (Cunning): <br></br> {calculateMarkedUpPrice(item)} gold</p>
                                             <input
                                                 type="number"
                                                 value={sellAmount}
@@ -96,13 +115,12 @@ const TradeInterface: React.FC<TradeInterfaceProps> = ({ stock, playerInventory,
                                 </div>
                             ))}
                         </div>
+                        <div className={styles.summary}>
+                            <h2>Your Gold: {playerGold} gold</h2>
+                        </div>
                     </div>
                 </TabPanel>
             </Tabs>
-
-            <div className={styles.summary}>
-                <h2>Your Gold: {playerGold} gold</h2>
-            </div>
         </div>
     );
 };

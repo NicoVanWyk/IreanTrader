@@ -14,3 +14,8 @@ Deploy new build:
 
 Collect changes:
 1. git pull origin main
+
+<!-- TODO: ADD Ability integration (dex, etc) -->
+<!-- TODO: Add random events -->
+<!-- TODO: Rarity in stock -->
+<!-- TODO: Perks (ex. one that can increase the sell value of certain stock types) -->
