@@ -1,0 +1,1 @@
+export type TileType = 'empty' | 'city' | 'forest' | 'mountain' | 'river' | 'bridge' | 'road';

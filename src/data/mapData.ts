@@ -1,0 +1,44 @@
+import { TileType } from './TileTypes';
+
+export const initialMap: TileType[][] = [
+    // First 5 rows
+    ['mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'city', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'forest', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'river'],
+    ['mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'forest', 'empty', 'forest', 'forest', 'forest', 'empty', 'forest', 'empty', 'empty', 'river', 'river'],
+    ['mountain', 'mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'river', 'river', 'empty'],
+    ['empty', 'mountain', 'mountain', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'road', 'road', 'road', 'forest', 'forest', 'forest', 'empty', 'forest', 'forest', 'forest', 'empty', 'river', 'river', 'empty', 'empty'],
+    ['empty', 'empty', 'mountain', 'mountain', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'road', 'road', 'road', 'river', 'river', 'river', 'road', 'empty', 'forest', 'empty', 'forest', 'empty', 'empty', 'empty', 'river', 'river', 'empty', 'empty', 'empty'],
+    // Second 5 rows
+    ['empty', 'empty', 'empty', 'mountain', 'mountain', 'empty', 'river', 'river', 'river', 'road', 'road', 'river', 'river', 'river', 'river', 'empty', 'river', 'river', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'river', 'river', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'mountain', 'river', 'river', 'empty', 'river', 'river', 'road', 'river', 'empty', 'empty', 'empty', 'empty', 'empty', 'river', 'river', 'road', 'road', 'road', 'city', 'river', 'river', 'empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'river', 'bridge', 'river', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'river', 'river', 'river', 'river', 'bridge', 'river', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'river', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'mountain', 'mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'forest', 'empty', 'empty', 'forest', 'river', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty'],
+
+    // Third Five Rows
+    ['empty', 'empty', 'mountain', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'forest', 'empty', 'empty', 'forest', 'empty', 'empty', 'forest', 'empty', 'river', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'mountain'],
+    ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'river', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'mountain', 'mountain'],
+    ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'river', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'mountain', 'empty'],
+    ['forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'river', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'mountain', 'empty'],
+    ['forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'city', 'empty', 'forest', 'empty', 'forest', 'empty', 'river', 'river', 'empty', 'empty', 'road', 'empty', 'mountain', 'mountain', 'empty'],
+
+    // Fourth 5 rows
+    ['forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'river', 'river', 'empty', 'city', 'empty', 'mountain', 'empty', 'empty'],
+    ['forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'forest', 'empty', 'empty', 'empty', 'forest', 'empty', 'river', 'river', 'empty', 'mountain', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'forest', 'forest', 'empty', 'forest', 'empty', 'river', 'river', 'mountain', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'empty', 'empty', 'empty', 'city', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'empty', 'road', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'forest', 'empty', 'empty', 'river', 'empty', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'empty', 'road', 'empty', 'empty', 'forest', 'forest', 'empty', 'forest', 'forest', 'empty', 'empty', 'river', 'empty', 'empty', 'empty', 'empty'],
+
+    // Fifth 5 rows
+    ['forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'road', 'road', 'empty', 'empty', 'forest', 'empty', 'empty', 'road', 'mountain', 'mountain', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'empty', 'river', 'empty', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'road', 'empty', 'empty', 'road', 'mountain', 'mountain', 'empty', 'mountain', 'mountain', 'empty', 'empty', 'river', 'river', 'river', 'river', 'empty', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'road', 'road', 'mountain', 'empty', 'city', 'mountain', 'empty', 'empty', 'river', 'river', 'city', 'mountain', 'river', 'river', 'empty', 'empty', 'empty'],
+    ['forest', 'forest', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'mountain', 'mountain', 'mountain', 'road', 'empty', 'river', 'river', 'road', 'empty', 'mountain', 'empty', 'river', 'river', 'empty', 'empty'],
+    ['forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'mountain', 'road', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'mountain', 'empty', 'empty', 'empty', 'empty'],
+
+    // Sixth Five Rows
+    ['empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'forest', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'road', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'mountain', 'mountain', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'forest', 'empty', 'forest', 'forest', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'mountain', 'mountain', 'empty', 'empty'],
+    ['empty', 'empty', 'empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'road', 'empty', 'empty', 'empty', 'road', 'city', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'mountain', 'mountain', 'empty'],
+    ['empty', 'forest', 'empty', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'empty', 'empty', 'road', 'empty', 'road', 'road', 'road', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'mountain', 'empty'],
+    ['empty', 'empty', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'forest', 'empty', 'city', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'empty', 'mountain', 'mountain'],
+];

@@ -138,7 +138,7 @@ const CharacterCreation: React.FC = () => {
                 name: selectedName,
                 language: selectedLanguage,
                 alignment: selectedAlignment,
-                stats: stats,
+                stats: stats
             };
 
             setPlayerData(data); // Save player data object

@@ -1,0 +1,25 @@
+/* TextBox.module.css */
+
+.textBox {
+    background-color: #11021f;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 800px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.textBox h2 {
+    margin-bottom: 5px;
+}
+
+.textBox ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.textBox ul li {
+    margin-bottom: 5px;
+}

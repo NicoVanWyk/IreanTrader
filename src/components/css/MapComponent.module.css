@@ -1,0 +1,91 @@
+.mapContainer {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    justify-items: center;
+    align-items: center;
+}
+
+.mapRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.mapTile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+    width: 50px;
+
+    margin-left: 1px;
+    margin-right: 1px;
+
+    border: 1px solid #ccc;
+    background-color: black;
+    cursor: pointer;
+}
+
+.mapTile:hover {
+    background-color: #ccc;
+}
+
+/* Normal tiles: */
+.empty {
+    background-color: lightgreen;
+}
+
+.city {
+    background-color: white;
+}
+
+.forest {
+    background-color: darkgreen;
+}
+
+.mountain {
+    background-color: brown;
+}
+
+.river {
+    background-color: blue;
+}
+
+.bridge {
+    background-color: chocolate;
+}
+
+.road {
+    background-color: rgb(255, 255, 150);
+}
+
+/* Out of range tiles */
+.out-of-range-empty {
+    background-color: rgb(85, 142, 85);
+}
+
+.out-of-range-city {
+    background-color: rgb(148, 148, 148);
+}
+
+.out-of-range-forest {
+    background-color: rgb(0, 61, 0);
+}
+
+.out-of-range-mountain {
+    background-color: rgb(81, 21, 21);
+}
+
+.out-of-range-river {
+    background-color: rgb(0, 0, 82);
+}
+
+.out-of-range-bridge {
+    background-color: rgb(97, 48, 13);
+}
+
+.out-of-range-road {
+    background-color: rgb(121, 121, 71);
+}

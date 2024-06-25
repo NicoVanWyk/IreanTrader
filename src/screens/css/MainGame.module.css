@@ -1,0 +1,41 @@
+/* MainGame.module.css */
+
+.mainGameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.centeredContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.textBox {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.buttonGroup {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.buttonGroup button {
+    margin-bottom: 10px;
+}
