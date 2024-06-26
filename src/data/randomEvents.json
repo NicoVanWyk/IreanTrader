@@ -35,17 +35,17 @@
             {
                 "solutionText": "Try to pick the lock.",
                 "solutionStat": "Dexterity",
-                "solutionDC": 9
+                "solutionDC": 8
             },
             {
                 "solutionText": "Break the chest open.",
                 "solutionStat": "Strength",
-                "solutionDC": 12
+                "solutionDC": 9
             }
         ]
     },
     {
-        "description": "You trigger a hidden trap in the forest.",
+        "description": "You trigger a hidden trap in the treeline.",
         "successOutcome": "You escape the trap and salvage some valuable components.",
         "failureOutcome": "The trap injures you and you lose some valuables.",
         "positiveEvent": false,
@@ -55,17 +55,17 @@
             {
                 "solutionText": "Disarm the trap.",
                 "solutionStat": "Dexterity",
-                "solutionDC": 10
+                "solutionDC": 12
             },
             {
                 "solutionText": "Break open the trap to free yourself.",
                 "solutionStat": "Strength",
-                "solutionDC": 10
+                "solutionDC": 12
             },
             {
                 "solutionText": "Use a nearby branch as leverage to escape the trap.",
                 "solutionStat": "Intelligence",
-                "solutionDC": 10
+                "solutionDC": 11
             }
         ]
     },
@@ -96,6 +96,56 @@
                 "solutionText": "Flee!",
                 "solutionStat": "Dexterity",
                 "solutionDC": 10
+            }
+        ]
+    },
+    {
+        "description": "You encounter a group of travelers, their cart stuck in the mud.",
+        "successOutcome": "You leave with a few valuables for your troubles.",
+        "failureOutcome": "When you take stock at the end of the day, you realise you have less valuables than you should...",
+        "positiveEvent": true,
+        "resultAffects": "Gold",
+        "resultAmount": 20,
+        "solutions": [
+            {
+                "solutionText": "Help lift the cart out of the mud.",
+                "solutionStat": "Strength",
+                "solutionDC": 5
+            },
+            {
+                "solutionText": "Advise the group on how to properly save their cart.",
+                "solutionStat": "Intelligence",
+                "solutionDC": 5
+            },
+            {
+                "solutionText": "Steal a few of the valuables on the cart as you help them.",
+                "solutionStat": "Cunning",
+                "solutionDC": 7
+            }
+        ]
+    },
+    {
+        "description": "You find an abandoned cart in a nearby bog.",
+        "successOutcome": "You salvage a collection of goods that you can sell later.",
+        "failureOutcome": "You are unable to salvage anything of use, losing the equipment you used in the attempt.",
+        "positiveEvent": true,
+        "resultAffects": "Inventory",
+        "resultAmount": 15,
+        "solutions": [
+            {
+                "solutionText": "Drag the cart onto solid ground.",
+                "solutionStat": "Strength",
+                "solutionDC": 6
+            },
+            {
+                "solutionText": "Use rope to try and hook the goods from a safe location.",
+                "solutionStat": "Dexterity",
+                "solutionDC": 6
+            },
+            {
+                "solutionText": "Go back and forth, ferrying the goods onto safe ground without freeing the cart.",
+                "solutionStat": "Endurance",
+                "solutionDC": 5
             }
         ]
     }

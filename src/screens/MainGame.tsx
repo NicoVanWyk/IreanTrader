@@ -14,27 +14,40 @@ import { RandomEvent, generateRandomEvent } from '../data/randomEvents';
 const MainGame: React.FC = () => {
     const navigate = useNavigate();
 
+    // Player data
     const [playerData, setPlayerData] = useState<any>(null);
+    const [playerInventory, setPlayerInventory] = useState<StockItem[]>([]);
+    const [playerGold, setPlayerGold] = useState<number>(0);
+
+    // Movement Data
     const [movePoints, setMovePoints] = useState<number>(1);
     const [currentPosition, setCurrentPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+    // World Data
     const [days, setDays] = useState<number>(0);
     const [dayOfMonth, setDayOfMonth] = useState<number>(1);
+    const [currentStocks, setCurrentStocks] = useState<Stock[][]>([]);
+    const [citiesCoordinates, setCitiesCoordinates] = useState<CityCoordinate[]>([]);
+
+    // Component state variables
     const [showEnterCityButton, setShowEnterCityButton] = useState<boolean>(false);
     const [showTradeInterface, setShowTradeInterface] = useState<boolean>(false);
     const [showFullMap, setShowFullMap] = useState<boolean>(false);
-    const [messages, setMessages] = useState<string[]>([]);
-    const [currentStocks, setCurrentStocks] = useState<Stock[][]>([]);
-    const [citiesCoordinates, setCitiesCoordinates] = useState<CityCoordinate[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [playerInventory, setPlayerInventory] = useState<StockItem[]>([]);
-    const [currentCityStock, setCurrentCityStock] = useState<StockItem[]>([]);
-    const [playerGold, setPlayerGold] = useState<number>(0);
     const [showMenu, setShowMenu] = useState<boolean>(false);
     const [showCharacter, setShowCharacter] = useState<boolean>(false);
+    const [showRandomEventMenu, setShowRandomEventMenu] = useState<boolean>(false);
+    const [disableControls, setDisableControls] = useState<boolean>(false);
 
-    const [randomEventData, setRandomEventData] = useState<RandomEvent>()
-    const [showRandomEventMenu, setShowRandomEventMenu] = useState<boolean>(false)
+    // Output variables
+    const [messages, setMessages] = useState<string[]>([]);
 
+    // Trade Variables
+    const [currentCityStock, setCurrentCityStock] = useState<StockItem[]>([]);
+
+    // Random event data
+    const [randomEventData, setRandomEventData] = useState<RandomEvent>();
+
+    // Initialise player data
     useEffect(() => {
         const savedPlayerData = localStorage.getItem('playerData');
         if (savedPlayerData) {
@@ -50,6 +63,7 @@ const MainGame: React.FC = () => {
         }
     }, []);
 
+    // Initialise game data
     useEffect(() => {
         const initializeGame = async () => {
             const initialPosition = findInitialPosition(initialMap);
@@ -69,16 +83,22 @@ const MainGame: React.FC = () => {
             console.log(generatedStocks);
 
             checkCityTile(initialPosition.x, initialPosition.y);
-            setLoading(false);
         };
 
         initializeGame();
     }, []);
 
+    // Check the tile the user moves to, and see if it is a city tile or not
     useEffect(() => {
         checkCityTile(currentPosition.x, currentPosition.y);
     }, [currentPosition]);
 
+    const checkCityTile = (x: number, y: number) => {
+        const tile = initialMap[y][x];
+        setShowEnterCityButton(tile === 'city');
+    };
+
+    // Find the user's starting position
     const findInitialPosition = (map: string[][]): { x: number; y: number } => {
         for (let y = 0; y < map.length; y++) {
             for (let x = 0; x < map[y].length; x++) {
@@ -90,6 +110,7 @@ const MainGame: React.FC = () => {
         return { x: 0, y: 0 };
     };
 
+    // Generate a list of all the cities in the map.
     const findAllCities = (map: string[][]): CityCoordinate[] => {
         let arrCoords: CityCoordinate[] = [];
 
@@ -104,11 +125,7 @@ const MainGame: React.FC = () => {
         return arrCoords;
     };
 
-    const checkCityTile = (x: number, y: number) => {
-        const tile = initialMap[y][x];
-        setShowEnterCityButton(tile === 'city');
-    };
-
+    // Handle movement across tiles
     const handleTileClick = (x: number, y: number, moveCost: number) => {
         console.log(`Clicked tile at (${x}, ${y})`);
         if (moveCost == 0 && movePoints > 0) {
@@ -117,10 +134,8 @@ const MainGame: React.FC = () => {
             console.log(`Moving player to (${x}, ${y}) with move cost ${moveCost}`);
             setCurrentPosition({ x, y });
             setMovePoints(prevMovePoints => prevMovePoints - moveCost);
-            addMessage(`Moved to (${x}, ${y}) with move cost ${moveCost}`);
         } else {
             if (x === currentPosition.x && y === currentPosition.y) {
-                addMessage(`You decide to rest for the rest of the day at (${x}, ${y})`);
                 handleEndDayClick();
             } else {
                 addMessage(`You are too tired to move to (${x}, ${y})`);
@@ -128,11 +143,9 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Handle showing the trade interface, as well as find the stock for the city that was entered
     const handleEnterCity = () => {
-        if (loading) {
-            addMessage('Please wait, loading city stock...');
-            return;
-        }
+        setDisableControls(true);
 
         const cityIndex = citiesCoordinates.findIndex(city => city.x === currentPosition.x && city.y === currentPosition.y);
 
@@ -153,10 +166,13 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Hide the trade interface and enable controls
     const handleExitCity = () => {
-        setShowTradeInterface(false)
+        setShowTradeInterface(false);
+        setDisableControls(false);
     }
 
+    // Purchase an item
     const handlePurchase = (item: StockItem, amount: number) => {
         // Calculate base purchase cost
         let purchaseCost = item.price * amount;
@@ -202,6 +218,7 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Sell an item
     const handleSell = (item: StockItem, amount: number) => {
         const isItemInCityStock = currentCityStock.some(cityItem => cityItem.id === item.id);
 
@@ -234,13 +251,13 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // End the day, trigger a random event and reset move points
     const handleEndDayClick = () => {
         console.log('Ending the day...');
         handleRandomEvent();
         setDays(prevDays => prevDays + 1);
         setDayOfMonth(prevDay => (prevDay % 25) + 1);
         resetMovePoints();
-        addMessage('Day ended.');
 
         // Check if the dayOfMonth resets to 1 (end of month)
         if (dayOfMonth % 25 === 0) {
@@ -248,12 +265,14 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Regenerate stocks for all cities
     const regenerateStocks = () => {
         const regeneratedStocks = generateStocks(citiesCoordinates);
         setCurrentStocks(regeneratedStocks);
-        addMessage('Stocks have been regenerated for each city.');
+        addMessage('Stocks have refreshed in each city.');
     };
 
+    // Generate a random event and show the menu
     const handleRandomEvent = () => {
         // Generate a random event
         const event: RandomEvent | undefined = generateRandomEvent(playerData.stats.perception);
@@ -261,11 +280,13 @@ const MainGame: React.FC = () => {
         if (event) {
             setRandomEventData(event)
             setShowRandomEventMenu(true);
+            setDisableControls(true)
         } else {
             console.log('No random event occurred.');
         }
     };
 
+    // Click a solution on the random event that was generated
     const handleSolutionClick = (solutionStat: string, solutionDC: number) => {
         const { stats } = playerData;
         const typeAffects = randomEventData?.resultAffects;
@@ -289,6 +310,7 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Apply the outcome of the random event depending on what happened
     const applyOutcome = async (typeAffects: string | undefined, amount: number | undefined) => {
         if (typeAffects && amount !== undefined) {
 
@@ -301,6 +323,7 @@ const MainGame: React.FC = () => {
                         setPlayerGold(10);
                         addMessage('The fates seem to smile on you: last night you had nothing left to lose, but you find 10 gold just outside your camp as you begin your new day.');
                         setShowRandomEventMenu(false);
+                        setDisableControls(false);
 
                         return;
 
@@ -309,6 +332,7 @@ const MainGame: React.FC = () => {
                         // --rather target inventory
                         affectInventory(amount);
                         setShowRandomEventMenu(false);
+                        setDisableControls(false);
 
                         return;
 
@@ -317,12 +341,12 @@ const MainGame: React.FC = () => {
                         // --rather target gold
                         affectGold(amount);
                         setShowRandomEventMenu(false);
+                        setDisableControls(false);
 
                         return;
                     } else {
                         console.log(`Unknown resultAffects type: ${typeAffects}`);
                     }
-
                 }
 
                 // Doesn't need a check as it checks the failure/success in the function. The check above is ONLY when the user doesn't have enough 
@@ -331,11 +355,13 @@ const MainGame: React.FC = () => {
                 if (typeAffects === 'Gold' && playerGold > 0) {
                     affectGold(amount);
                     setShowRandomEventMenu(false);
+                    setDisableControls(false);
 
                     return;
                 } else if (typeAffects === 'Inventory' && playerInventory.length > 0) {
                     affectInventory(amount);
                     setShowRandomEventMenu(false);
+                    setDisableControls(false);
 
                     return;
                 } else {
@@ -348,7 +374,7 @@ const MainGame: React.FC = () => {
         }
     };
 
-    // Change the gold amount
+    // --Change the gold amount
     const affectGold = (amount: number) => {
         const newGold = playerGold + amount;
 
@@ -370,7 +396,7 @@ const MainGame: React.FC = () => {
         }
     };
 
-    // Change a random inventory item's amount amount
+    // --Change a random inventory item's amount amount
     const affectInventory = (amount: number) => {
         const inventory = playerInventory;
 
@@ -409,6 +435,7 @@ const MainGame: React.FC = () => {
         setPlayerInventory(inventory);
     };
 
+    // Reset move points after each day
     const resetMovePoints = () => {
         const endurance = playerData?.stats?.Endurance;
         if (endurance) {
@@ -417,6 +444,7 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Save all relevant data to localStorage
     const handleSave = () => {
         const dataToSave = {
             playerData: playerData,
@@ -433,6 +461,7 @@ const MainGame: React.FC = () => {
         addMessage('Game saved.');
     };
 
+    // Load saved data
     const handleLoad = () => {
         const savedData = localStorage.getItem('gameData');
         if (savedData) {
@@ -452,6 +481,7 @@ const MainGame: React.FC = () => {
         }
     };
 
+    // Restart the game, removing all items from localStorage
     const handleRestart = () => {
         // Confirm finishing
         if (window.confirm('Are you sure you want to restart? You will lose all of your progress.')) {
@@ -461,6 +491,7 @@ const MainGame: React.FC = () => {
         }
     }
 
+    // Get the current date as a string
     const getCurrentDateString = (): string => {
         const currentDate = getCurrentDate(days);
         const monthIndex = currentDate.getMonth();
@@ -470,10 +501,12 @@ const MainGame: React.FC = () => {
         return `${day} ${MonthNames[monthIndex]}, ${year}`;
     };
 
+    // Toggle showing/hiding the map
     const toggleFullMap = () => {
-        setShowFullMap(prev => !prev); // Toggle full map state
+        setShowFullMap(prev => !prev);
     };
 
+    // Add a message to the text box
     const addMessage = (message: string) => {
         setMessages(prevMessages => [...prevMessages, message]);
     };
@@ -502,7 +535,7 @@ const MainGame: React.FC = () => {
                     <button className={styles.menuButton} onClick={handleSave} disabled={showTradeInterface}>Save</button>
                     <button className={styles.menuButton} onClick={handleLoad} disabled={showTradeInterface}>Load</button>
                     <button className={styles.menuButton} onClick={handleRestart} disabled={showTradeInterface}>Restart</button>
-                    <button className={styles.menuButton} onClick={() => setShowMenu(false)} disabled={showTradeInterface}>Close Menu</button>
+                    <button className={styles.menuButton} onClick={() => (setShowMenu(false), setDisableControls(false))} disabled={showTradeInterface}>Close Menu</button>
                 </div>
             ) : null}
 
@@ -549,7 +582,7 @@ const MainGame: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button className={styles.menuButton} onClick={() => setShowCharacter(false)} disabled={showTradeInterface}>
+                            <button className={styles.menuButton} onClick={() => (setShowCharacter(false), setDisableControls(false))} disabled={showTradeInterface}>
                                 Close Menu
                             </button>
                         </div>
@@ -565,6 +598,9 @@ const MainGame: React.FC = () => {
                                 ))}
                             </ul>
                             <p>{playerGold} Gold</p>
+                            <button className={styles.menuButton} onClick={() => (setShowCharacter(false), setDisableControls(false))} disabled={showTradeInterface}>
+                                Close Menu
+                            </button>
                         </div>
                     </TabPanel>
                 </Tabs>
@@ -596,11 +632,11 @@ const MainGame: React.FC = () => {
                             <div className={styles.buttonGroup}>
                                 <p>Move Points: {movePoints}</p>
                                 <p>Current Date: {getCurrentDateString()}</p>
-                                {showEnterCityButton && <button onClick={handleEnterCity} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Enter City</button>}
-                                <button onClick={handleEndDayClick} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>End Day</button>
-                                <button onClick={() => setShowCharacter(true)} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Character</button>
-                                <button onClick={toggleFullMap} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Map</button>
-                                <button onClick={() => setShowMenu(true)} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Menu</button>
+                                {showEnterCityButton && <button onClick={handleEnterCity} disabled={disableControls}>Enter City</button>}
+                                <button onClick={handleEndDayClick} disabled={disableControls}>End Day</button>
+                                <button onClick={() => (setShowCharacter(true), setDisableControls(true))} disabled={disableControls}>Character</button>
+                                <button onClick={toggleFullMap} disabled={disableControls}>Map</button>
+                                <button onClick={() => (setShowMenu(true), setDisableControls(true))} disabled={disableControls}>Menu</button>
                             </div>
                         </div>
                     </div>

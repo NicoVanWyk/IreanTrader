@@ -24,3 +24,5 @@ abilities:
 
 *Luck: 
     Represents fortune or fate, influencing random events, critical hits in combat, or unexpected windfalls in trading
+
+For random events, positive events should have much lower DC than negative events, although the amount lost/received does not change.

@@ -86,7 +86,7 @@ const generateStocks = (cityCoordinates: CityCoordinate[]): Stock[][] => {
         });
 
         // Select the number of items needed
-        const selectedItemsToReturn = itemsToReturn.slice(0, Math.max(itemsToReturn.length, numberOfItems));
+        const selectedItemsToReturn = itemsToReturn.slice(0, numberOfItems);
 
         // Generate stocks for selected items
         return selectedItemsToReturn.map(item => {

@@ -20,3 +20,4 @@ Collect changes:
 <!-- TODO: Weight system -->
 <!-- TODO: Specific solution success/failure text -->
 <!-- TODO: Luck affects random events, both adding a modifier.reducing the dc and making negative events rarer -->
+<!-- TODO: Positive inventory events should also be able to give random stock items, not just increase what the user has. -->

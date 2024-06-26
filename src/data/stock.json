@@ -10,15 +10,15 @@
         "id": "Sword",
         "description": "A simple steel sword.",
         "type": "Adventuring Goods",
-        "lowest_price": 10,
-        "highest_price": 20
+        "lowest_price": 100,
+        "highest_price": 200
     },
     {
         "id": "Vegetables",
         "description": "A crate of vegetables, freshly grown.",
         "type": "Foodstuffs",
-        "lowest_price": 1,
-        "highest_price": 5
+        "lowest_price": 3,
+        "highest_price": 7
     },
     {
         "id": "Ring Of Vanishing",
@@ -35,11 +35,39 @@
         "highest_price": 5
     },
     {
+        "id": "Fruits & Vegetables",
+        "description": "A crate mixed with fruits and vegetables.",
+        "type": "Foodstuffs",
+        "lowest_price": 2,
+        "highest_price": 6
+    },
+    {
+        "id": "Beer",
+        "description": "A crate of beer ready for transport.",
+        "type": "Foodstuffs",
+        "lowest_price": 1,
+        "highest_price": 5
+    },
+    {
+        "id": "Wine",
+        "description": "A crate of wine of various qualities.",
+        "type": "Foodstuffs",
+        "lowest_price": 10,
+        "highest_price": 15
+    },
+    {
+        "id": "High Quality Wine",
+        "description": "The finest wine money can buy.",
+        "type": "Foodstuffs",
+        "lowest_price": 50,
+        "highest_price": 150
+    },
+    {
         "id": "Helmet",
         "description": "A helmet made of steel.",
         "type": "Adventuring Goods",
-        "lowest_price": 10,
-        "highest_price": 30
+        "lowest_price": 100,
+        "highest_price": 300
     },
     {
         "id": "Rope",
@@ -110,5 +138,47 @@
         "type": "Spiritual Goods",
         "lowest_price": 100,
         "highest_price": 150
+    },
+    {
+        "id": "Mortar & Pestle",
+        "description": "A tool set useful for preparing ingredients.",
+        "type": "Basic Goods",
+        "lowest_price": 20,
+        "highest_price": 40
+    },
+    {
+        "id": "Waterskins",
+        "description": "Used to carry water. Ideal for travel.",
+        "type": "Basic Goods",
+        "lowest_price": 2,
+        "highest_price": 10
+    },
+    {
+        "id": "Flour",
+        "description": "A sack of flour awaiting to be turned into something greater.",
+        "type": "Foodstuffs",
+        "lowest_price": 50,
+        "highest_price": 75
+    },
+    {
+        "id": "Spear",
+        "description": "A long range martial weapon.",
+        "type": "Adventuring Goods",
+        "lowest_price": 150,
+        "highest_price": 200
+    },
+    {
+        "id": "Iron Ore",
+        "description": "Raw iron ore stuffed into crates and barrels.",
+        "type": "Basic Goods",
+        "lowest_price": 30,
+        "highest_price": 50
+    },
+    {
+        "id": "Silver Ore",
+        "description": "Raw silver ore, destined to some day become jewelry.",
+        "type": "Basic Goods",
+        "lowest_price": 70,
+        "highest_price": 90
     }
 ]
