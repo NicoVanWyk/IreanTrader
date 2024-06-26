@@ -1,0 +1,102 @@
+[
+    {
+        "description": "You encounter a lost and panicked traveler. Help them find their way?",
+        "successOutcome": "You successfully guide the traveler to safety. They reward you for helping them.",
+        "failureOutcome": "You lose your way in the attempt, spending valuable time and losing some of your valuables.",
+        "positiveEvent": true,
+        "resultAffects": "Gold",
+        "resultAmount": 20,
+        "solutions": [
+            {
+                "solutionText": "Convince them to pay you for their safety...",
+                "solutionStat": "Cunning",
+                "solutionDC": 8
+            },
+            {
+                "solutionText": "Try to lead the traveler to a safe place.",
+                "solutionStat": "Intelligence",
+                "solutionDC": 10
+            },
+            {
+                "solutionText": "Try to calm the traveler so they can find their own way back.",
+                "solutionStat": "Charm",
+                "solutionDC": 10
+            }
+        ]
+    },
+    {
+        "description": "You stumble upon a hidden treasure chest!",
+        "successOutcome": "You discover valuable items in the treasure chest.",
+        "failureOutcome": "The treasure chest turns out to be a mimic! You lose some of your valuables as you fight it off.",
+        "positiveEvent": true,
+        "resultAffects": "Inventory",
+        "resultAmount": 1,
+        "solutions": [
+            {
+                "solutionText": "Try to pick the lock.",
+                "solutionStat": "Dexterity",
+                "solutionDC": 9
+            },
+            {
+                "solutionText": "Break the chest open.",
+                "solutionStat": "Strength",
+                "solutionDC": 12
+            }
+        ]
+    },
+    {
+        "description": "You trigger a hidden trap in the forest.",
+        "successOutcome": "You escape the trap and salvage some valuable components.",
+        "failureOutcome": "The trap injures you and you lose some valuables.",
+        "positiveEvent": false,
+        "resultAffects": "Inventory",
+        "resultAmount": 1,
+        "solutions": [
+            {
+                "solutionText": "Disarm the trap.",
+                "solutionStat": "Dexterity",
+                "solutionDC": 10
+            },
+            {
+                "solutionText": "Break open the trap to free yourself.",
+                "solutionStat": "Strength",
+                "solutionDC": 10
+            },
+            {
+                "solutionText": "Use a nearby branch as leverage to escape the trap.",
+                "solutionStat": "Intelligence",
+                "solutionDC": 10
+            }
+        ]
+    },
+    {
+        "description": "You encounter a group of hostile bandits.",
+        "successOutcome": "You manage to leave the encounter with more than you came in with. Excellent maneuvering!",
+        "failureOutcome": "You are unable to keep your valuables safe.",
+        "positiveEvent": false,
+        "resultAffects": "Inventory",
+        "resultAmount": 2,
+        "solutions": [
+            {
+                "solutionText": "Fight off the bandits.",
+                "solutionStat": "Strength",
+                "solutionDC": 12
+            },
+            {
+                "solutionText": "Convince the bandits you have nothing worth taking.",
+                "solutionStat": "Charm",
+                "solutionDC": 12
+            },
+            {
+                "solutionText": "Convince the group there is a traitor among them, taking your leave when infighting eventually starts.",
+                "solutionStat": "Cunning",
+                "solutionDC": 12
+            },
+            {
+                "solutionText": "Flee!",
+                "solutionStat": "Dexterity",
+                "solutionDC": 10
+            }
+        ]
+    }
+]

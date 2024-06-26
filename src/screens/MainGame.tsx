@@ -9,6 +9,7 @@ import { generateStocks, CityCoordinate, Stock, StockItem } from '../data/stocks
 import TradeInterface from '../components/TradeInterfaceComponent';
 import { useNavigate } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import { RandomEvent, generateRandomEvent } from '../data/randomEvents';
 
 const MainGame: React.FC = () => {
     const navigate = useNavigate();
@@ -30,6 +31,9 @@ const MainGame: React.FC = () => {
     const [playerGold, setPlayerGold] = useState<number>(0);
     const [showMenu, setShowMenu] = useState<boolean>(false);
     const [showCharacter, setShowCharacter] = useState<boolean>(false);
+
+    const [randomEventData, setRandomEventData] = useState<RandomEvent>()
+    const [showRandomEventMenu, setShowRandomEventMenu] = useState<boolean>(false)
 
     useEffect(() => {
         const savedPlayerData = localStorage.getItem('playerData');
@@ -153,7 +157,6 @@ const MainGame: React.FC = () => {
         setShowTradeInterface(false)
     }
 
-    // Inside handlePurchase function
     const handlePurchase = (item: StockItem, amount: number) => {
         // Calculate base purchase cost
         let purchaseCost = item.price * amount;
@@ -199,7 +202,6 @@ const MainGame: React.FC = () => {
         }
     };
 
-    // Inside handleSell function
     const handleSell = (item: StockItem, amount: number) => {
         const isItemInCityStock = currentCityStock.some(cityItem => cityItem.id === item.id);
 
@@ -253,7 +255,158 @@ const MainGame: React.FC = () => {
     };
 
     const handleRandomEvent = () => {
-        console.log('Handling random event...');
+        // Generate a random event
+        const event: RandomEvent | undefined = generateRandomEvent(playerData.stats.perception);
+
+        if (event) {
+            setRandomEventData(event)
+            setShowRandomEventMenu(true);
+        } else {
+            console.log('No random event occurred.');
+        }
+    };
+
+    const handleSolutionClick = (solutionStat: string, solutionDC: number) => {
+        const { stats } = playerData;
+        const typeAffects = randomEventData?.resultAffects;
+        const affectsAmount = randomEventData?.resultAmount;
+
+        if (stats && typeof stats === 'object' && solutionStat in stats) {
+            const statAmount = stats[solutionStat];
+
+            const d20Roll = Math.floor(Math.random() * 20) + 1;
+            const rollWithModifier = d20Roll + statAmount;
+
+            if (rollWithModifier >= solutionDC) {
+                // Handle success outcome
+                applyOutcome(typeAffects, affectsAmount);
+            } else {
+                // Handle failure outcome
+                applyOutcome(typeAffects, -affectsAmount!);
+            }
+        } else {
+            console.log(`Player does not have stat ${solutionStat}`);
+        }
+    };
+
+    const applyOutcome = async (typeAffects: string | undefined, amount: number | undefined) => {
+        if (typeAffects && amount !== undefined) {
+
+            if (playerInventory) {
+                // if the outcome was negative. This is done so this is not applied to positive outcomes, as the player will get something anyways
+                if (amount < 0) {
+                    console.log('failure')
+                    // If the user has no gold nor inventory
+                    if (playerGold === 0 && playerInventory.length === 0) {
+                        setPlayerGold(10);
+                        addMessage('The fates seem to smile on you: last night you had nothing left to lose, but you find 10 gold just outside your camp as you begin your new day.');
+                        setShowRandomEventMenu(false);
+
+                        return;
+
+                        // If gold is targeted, but the player has no gold left, but they do have inventory (ensure by the first if statement checking to see if both are empty)
+                    } else if (typeAffects === 'Gold' && playerGold === 0) {
+                        // --rather target inventory
+                        affectInventory(amount);
+                        setShowRandomEventMenu(false);
+
+                        return;
+
+                        // If inventory is targeted, but the player has no inventory
+                    } else if (typeAffects === 'Inventory' && playerInventory.length === 0) {
+                        // --rather target gold
+                        affectGold(amount);
+                        setShowRandomEventMenu(false);
+
+                        return;
+                    } else {
+                        console.log(`Unknown resultAffects type: ${typeAffects}`);
+                    }
+
+                }
+
+                // Doesn't need a check as it checks the failure/success in the function. The check above is ONLY when the user doesn't have enough 
+                // of the affected type to subtract, and must therefore subtract a different type. (or if they have nothing at all)
+                // If the user has enough gold
+                if (typeAffects === 'Gold' && playerGold > 0) {
+                    affectGold(amount);
+                    setShowRandomEventMenu(false);
+
+                    return;
+                } else if (typeAffects === 'Inventory' && playerInventory.length > 0) {
+                    affectInventory(amount);
+                    setShowRandomEventMenu(false);
+
+                    return;
+                } else {
+                    console.log(`Unknown resultAffects type: ${typeAffects}`);
+                }
+
+            } else {
+                console.log(`Invalid typeAffects or amount: ${typeAffects}, ${amount}`);
+            }
+        }
+    };
+
+    // Change the gold amount
+    const affectGold = (amount: number) => {
+        const newGold = playerGold + amount;
+
+        if (newGold >= 0) {
+            setPlayerGold(newGold);
+
+            if (amount > 0) {
+                addMessage(randomEventData!.successOutcome);
+                addMessage('You gain ' + amount + ' gold.');
+            } else if (amount < 0) {
+                let displayAmount = amount * -1;
+                addMessage(randomEventData!.failureOutcome);
+                addMessage('You lose ' + displayAmount + ' gold.');
+            }
+
+        } else {
+            setPlayerData({ ...playerData, playerGold: 0 });
+            addMessage('All of your gold has been lost...');
+        }
+    };
+
+    // Change a random inventory item's amount amount
+    const affectInventory = (amount: number) => {
+        const inventory = playerInventory;
+
+        // Randomly select an item index
+        const randomIndex = Math.floor(Math.random() * inventory.length);
+        const selectedItem = inventory[randomIndex];
+
+        // Update item amount
+        const updatedAmount = selectedItem.amountAvailable + amount;
+
+        // If the amount is less than 0, it can be assumed that it was a failure.
+        if (updatedAmount <= 0) {
+            // Remove item from inventory
+            inventory.splice(randomIndex, 1);
+            addMessage(randomEventData!.failureOutcome);
+            addMessage('You have lost all your stock of ' + selectedItem.id + ".");
+        } else {
+            // Update item amount
+            selectedItem.amountAvailable = updatedAmount;
+            inventory[randomIndex] = selectedItem;
+
+            // if it was a success
+            if (amount > 0) {
+                addMessage(randomEventData!.successOutcome);
+                addMessage('You gain ' + amount + ' stock of ' + selectedItem.id + '.');
+
+                // if it was a failure
+            } else if (amount < 0) {
+                addMessage(randomEventData!.failureOutcome);
+                let displayAmount = amount * -1;
+                addMessage('You lose ' + displayAmount + ' stock of ' + selectedItem.id + '.');
+            }
+        }
+
+        // Update playerData with new inventory
+        setPlayerInventory(inventory);
     };
 
     const resetMovePoints = () => {
@@ -353,6 +506,20 @@ const MainGame: React.FC = () => {
                 </div>
             ) : null}
 
+            {showRandomEventMenu && randomEventData ? (
+                <div className={styles.randomEventMenu}>
+                    <h2>{randomEventData.description}</h2>
+                    {/* Render solutions as clickable text lines */}
+                    <ol>
+                        {randomEventData.solutions.map((solution, index) => (
+                            <li key={index} onClick={() => handleSolutionClick(solution.solutionStat, solution.solutionDC)}>
+                                {solution.solutionText}
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            ) : null}
+
             {showCharacter ? (
                 <Tabs className={styles.tabs}>
                     <TabList className={styles.tabList}>
@@ -413,7 +580,7 @@ const MainGame: React.FC = () => {
                     <div>
                         {showTradeInterface ? (
                             <h1>Welcome, {playerData.race}, please browse our wares.</h1>
-                        ) : showMenu || showCharacter ? (
+                        ) : showMenu || showCharacter || showRandomEventMenu ? (
                             <h1>Game Has Been Paused</h1>
                         ) : <MapComponent
                             map={initialMap}
@@ -429,11 +596,11 @@ const MainGame: React.FC = () => {
                             <div className={styles.buttonGroup}>
                                 <p>Move Points: {movePoints}</p>
                                 <p>Current Date: {getCurrentDateString()}</p>
-                                {showEnterCityButton && <button onClick={handleEnterCity} disabled={showTradeInterface || showMenu || showCharacter}>Enter City</button>}
-                                <button onClick={handleEndDayClick} disabled={showTradeInterface || showMenu || showCharacter}>End Day</button>
-                                <button onClick={() => setShowCharacter(true)} disabled={showTradeInterface || showMenu || showCharacter}>Character</button>
-                                <button onClick={toggleFullMap} disabled={showTradeInterface || showMenu || showCharacter}>Map</button>
-                                <button onClick={() => setShowMenu(true)} disabled={showTradeInterface || showMenu || showCharacter}>Menu</button>
+                                {showEnterCityButton && <button onClick={handleEnterCity} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Enter City</button>}
+                                <button onClick={handleEndDayClick} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>End Day</button>
+                                <button onClick={() => setShowCharacter(true)} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Character</button>
+                                <button onClick={toggleFullMap} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Map</button>
+                                <button onClick={() => setShowMenu(true)} disabled={showTradeInterface || showMenu || showCharacter || showRandomEventMenu}>Menu</button>
                             </div>
                         </div>
                     </div>

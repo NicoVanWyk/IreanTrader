@@ -15,7 +15,8 @@ Deploy new build:
 Collect changes:
 1. git pull origin main
 
-<!-- TODO: ADD Ability integration (dex, etc) -->
-<!-- TODO: Add random events -->
-<!-- TODO: Rarity in stock -->
 <!-- TODO: Perks (ex. one that can increase the sell value of certain stock types) -->
+<!-- TODO: Level up system based on profits -->
+<!-- TODO: Weight system -->
+<!-- TODO: Specific solution success/failure text -->
+<!-- TODO: Luck affects random events, both adding a modifier.reducing the dc and making negative events rarer -->
