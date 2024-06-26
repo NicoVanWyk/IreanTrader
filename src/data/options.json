@@ -20,6 +20,13 @@
                 "Charm",
                 "Perception"
             ]
+        },
+        "Dwarf": {
+            "description": "Dwarves are native to the edge of Western Irea, and are a rare sight outside of their homelands. They are known for their willpower and determination.",
+            "bonuses": [
+                "Endurance",
+                "Strength"
+            ]
         }
     },
     "genders": [
@@ -50,6 +57,34 @@
                 "Intelligence",
                 "Cunning"
             ]
+        },
+        "Courtier": {
+            "description": "Courtiers navigate the world of nobility, surviving plots and starting their own as they try to climb the social ladder.",
+            "bonuses": [
+                "Charm",
+                "Cunning"
+            ]
+        },
+        "Mercenary": {
+            "description": "Mercenaries work for anyone willing to pay for their services, often roaming to wherever their next contract takes them.",
+            "bonuses": [
+                "Strength",
+                "Dexterity"
+            ]
+        },
+        "Soldier": {
+            "description": "Soldiers are taught how to defend their homes, and receive training to boost their physical capabilities.",
+            "bonuses": [
+                "Strength",
+                "Endurance"
+            ]
+        },
+        "Scout": {
+            "description": "Scouts move fast and report on anything they come across that is of note. They are employed by armies, prospectors and mercenary companies.",
+            "bonuses": [
+                "Perception",
+                "Dexterity"
+            ]
         }
     },
     "abilities": {
@@ -65,7 +100,8 @@
     "languages": [
         "Elvish",
         "Dwarvish",
-        "Tiefling"
+        "Tiefling",
+        "Alainish"
     ],
     "alignment": [
         "Neutral",
